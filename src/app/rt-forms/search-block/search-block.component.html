@@ -1,0 +1,15 @@
+<form [formGroup]="form" class="search_form" (ngSubmit)="onSubmit()">
+  <div class="row">
+
+    <div class="col-sm-9">
+      <rt-input-block class="search" name="search" [label]="labels['search']" [form]="form" [errors]="formErrors">
+      </rt-input-block>
+    </div>
+
+    <div class="col-sm-2">
+        <!-- [queryParams]="{ search: form.value }" -->
+      <button mat-stroked-button  color="primary" type="submit">Search</button>
+    </div>
+  </div>
+
+</form>

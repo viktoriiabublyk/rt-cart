@@ -1,0 +1,17 @@
+<!-- (click)="getNameCategory(category.data.name)" -->
+<a [routerLink]="['/catalogue/category', settings.formatCategoryUrl(category)]"
+  (click)="choiseIdCategory(category.id)">{{category.data.name}}</a>
+<ul class="custom">
+  <li style="list-style: none" *ngFor="let item of category.children;trackBy: trackByFn">
+    <a [routerLink]="['/catalogue/category', settings.formatCategoryUrl(item)]"
+      (click)="choiseIdCategory(item.id)">{{item.data.name}}</a>
+
+    <ul class="custom" style="list-style: none" *ngFor="let children of item.children;trackBy: trackByFn">
+      <li>
+        <a [routerLink]="['/catalogue/category', settings.formatCategoryUrl(children)]"
+          (click)="choiseIdCategory(children.id)">{{children.data.name}}</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+

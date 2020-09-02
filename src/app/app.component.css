@@ -1,0 +1,27 @@
+:host {
+  display: block;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: none;
+  border-radius: none;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #cfd1d4;
+  opacity: 0.25;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background:#c2c2c2
+}

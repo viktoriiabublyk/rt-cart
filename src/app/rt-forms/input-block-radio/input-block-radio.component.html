@@ -1,0 +1,19 @@
+<div [formGroup]="form" >
+  <mat-label [ngClass]="{'block': !inLineLabel}">
+    <mat-error *ngIf="errors[name] && dirty; else standardLabel">{{errors[name] }}</mat-error>
+    <ng-template #standardLabel>
+      <span class="label">{{label}}</span>
+    </ng-template>
+  </mat-label>
+  <mat-radio-group class="example-radio-group" [formControlName]="name">
+    <mat-radio-button
+      color="primary"
+      class="example-radio-button"
+      *ngFor="let option of options;trackBy: trackByFn" (click)="selectOption(option)"
+      [value]="optionDict[option]"
+      [disabled]="disabled || readonly"
+    >
+      {{option}}
+    </mat-radio-button>
+  </mat-radio-group>
+</div>

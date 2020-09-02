@@ -1,0 +1,10 @@
+<ng-container *ngIf="confirmationInfo$|async as confirmationInfo">
+
+  <app-layout-checkout-confirmation-of-payment-wrap [confirmationInfo]="confirmationInfo" [total]=" total$ | async ">
+    <ng-container *ngFor="let item of basket$ | async;trackBy: basketItemId">
+      <app-layout-checkout-confirmation-of-payment-basket-item  [item]="item" [calcPrice]="calculatePrice(item)" ></app-layout-checkout-confirmation-of-payment-basket-item>
+    </ng-container>
+  </app-layout-checkout-confirmation-of-payment-wrap>
+
+</ng-container>
+

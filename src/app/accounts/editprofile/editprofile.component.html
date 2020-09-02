@@ -1,0 +1,23 @@
+<div class="page-header action">
+  <h1>Edit Profile</h1>
+</div>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <rt-input-block class="first_name" placeholder="First name" name='first_name' [label]="labels['first_name']" [form]="form" 
+    [errors]="formErrors"></rt-input-block>
+  </div>
+  <div class="form-group ">
+    <rt-input-block class="last_name" placeholder="Last name" name='last_name' [label]="labels['last_name']" [form]="form" 
+    [errors]="formErrors"></rt-input-block>
+  </div>
+  <div class="form-group ">
+    <div>
+      <rt-input-block class="username" placeholder="User name" name='username' [label]="labels['username']" [form]="form" 
+      [errors]="formErrors"></rt-input-block>
+    </div>
+  </div>
+  <div class="form-group">
+    <button mat-flat-button color="primary" type="submit">Save</button>
+    <button mat-button type="unsubmit" routerLink='/accounts/profile' routerLinkActive="router-link-active">cancel</button>
+  </div>
+</form>

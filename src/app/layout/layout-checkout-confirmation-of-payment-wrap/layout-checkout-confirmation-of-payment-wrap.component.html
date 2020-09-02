@@ -1,0 +1,148 @@
+<div [@loadContent]="'open'">
+    <div class="sub-header">
+      <h1>Order {{confirmationInfo.id}}: confirmation</h1>
+    </div>
+    <p>
+      Your order has been placed and a confirmation email has been sent - your order number is <strong>{{confirmationInfo.id}}</strong>.
+      Please make a note of this reference or print this page and quote it in any communication with us regarding your order.
+    </p>
+    <div class="wrapper">
+      <div>
+        <div class="sub-header">
+          <h2>Shipping</h2>
+        </div>
+        <div class="item-1">
+          <a class="pull-right" routerLink="/checkout/shipping-address">change</a>
+          <h3>Address</h3>
+          <address *ngIf="confirmationInfo.payer.address as address" >
+            <span>{{address.address_line_1}}</span><br>
+            <span *ngIf="address.address_line_2">{{address.address_line_2}}<br></span>
+            <span *ngIf="address.address_line_3">{{address.address_line_3}}<br></span>
+            <span *ngIf="address.address_line_4" >{{address.address_line_4}}<br></span>
+            <span>{{address.admin_area_1}}</span><br>
+            <span>{{address.admin_area_2}}</span><br>
+            <span>{{address.country_code}}</span><br>
+            <span>{{address.postal_code}}</span><br>
+          </address>
+        </div>
+      </div>
+      <div>
+        <div class="sub-header">
+          <h2>Payment</h2>
+        </div>
+        <div class="item-2">
+          <a class="pull-right" routerLink="/checkout/payment-details">change</a>
+          <h3>Payment</h3>
+          <span>Payment details to go here</span>
+        </div>
+      </div>
+      <div>
+        <div class="item-1">
+          <a class="pull-right" routerLink="/checkout/shipping-method">change</a>
+          <h3>Shipping method</h3>
+          <span>Text here</span>
+        </div>
+      </div>
+    </div>
+    <a class="pull-right" routerLink="/basket/">Edit order contents</a>
+    <div class="sub-header">
+      <h2>Order contents</h2>
+    </div>
+    <div id="content_inner">
+      <div class="basket-title hidden-xs">
+        <div class="row">
+          <h2 class="col-sm-6 h3">Items purchased</h2>
+          <p class="col-sm-3 h3">Quantity</p>
+          <p class="col-sm-1 h3">Total</p>
+        </div>
+      </div>
+      <form class="basket_summary">
+        <div class="basket-items">
+          <ng-content></ng-content>
+        </div>
+      </form>
+      <div class="row">
+        <div class="col-sm-6"></div>
+        <div class="col-sm-6">
+          <div class="sub-header">
+            <h2>Totals</h2>
+          </div>
+          <div id="basket_totals">
+            <table class="table table-condensed">
+              <tbody>
+                <tr>
+                  <th colspan="2">
+                    <h3>Basket</h3>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="total">Basket total</th>
+                  <th class="total align-right">
+                    {{total}}
+                    <!-- TODO use pipe from teradata -->
+                  </th>
+                </tr>
+                <tr>
+                  <th>&nbsp;</th>
+                  <td></td>
+                </tr>
+                <tr>
+                  <th colspan="2">
+                    <h3>Shipping</h3>
+                  </th>
+                  </tr>
+                  <tr>
+                    <td>Shipping method</td >
+                    <td class="align-right"> Free shipping</td>
+                  </tr>
+                  <tr>
+                      <th class="total">Shipping method</th>
+                      <th class="total align-right">
+                        {{total}}
+                        <!-- TODO use pipe from teradata -->
+                      </th>
+                    </tr>
+                <tr>
+                  <th>&nbsp;</th>
+                  <td></td>
+                </tr>
+                <tr>
+                    <th><h3>Post order actions</h3></th>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="total" colspan="2">
+                      <p>Your name has been changed to Barry!</p>
+                    </td>
+                </tr>
+                <tr>
+                  <th>&nbsp;</th>
+                  <td></td>
+                </tr>
+                <tr>
+                  <th class="total">
+                    <h3>Order total</h3>
+                  </th>
+                  <td class="total align-right">
+                    <h3 class="price_color">
+                      {{total}}
+                    </h3>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+            <div class="col-sm-4">
+                <p><a class="btn btn-primary btn-block btn-lg">Print this page</a></p>
+            </div>
+            <div class="col-sm-4 col-sm-offset-4">
+                <p><a class="btn btn-primary btn-block btn-lg">Continue shopping</a></p>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>

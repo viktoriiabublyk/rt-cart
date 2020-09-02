@@ -1,0 +1,19 @@
+<article class="product_pod">
+  <div class="image_container">
+    <!-- [@load]="imageLoaded ? 'loaded' : 'pending'"  FIX ME -->
+    <a [routerLink]="['/catalogue', settings.formatProductUrl(item)]">
+      <img src="{{item?.image?.thumb || '/assets/img/image_not_found.jpg' }}" alt="item.image" class="thumbnail">
+      <!-- (load)="show($event)" -->
+    </a>
+  </div>
+  <app-star-rating [smallStar]="true" [disabledComp]="true" [ngModel]="rating"></app-star-rating>
+  <h3><a [routerLink]="['/catalogue', settings.formatProductUrl(item)]">{{item?.title}}</a></h3>
+  <div class="product_price">
+    <p class="price_color">{{ item?.price_data?.currency }} {{ item?.price_data?.excl_tax }}</p>
+    <!-- <p class="instock availability">
+      <i class="icon-ok"></i>
+      In stock
+    </p>  -->
+    <app-button-add [productId]="item?.id" [productName]="item?.title"></app-button-add>
+  </div>
+</article>

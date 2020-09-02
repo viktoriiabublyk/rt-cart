@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-sm-2 rating">
+    <app-star-rating [smallStar]="true" [disabledComp]="true" [ngModel]="rating"></app-star-rating>
+  </div>
+  <div class="col-sm-6 title">
+    <a routerLink="/catalogue/{{param}}/reviews/{{item?.id}}">
+      {{item?.title}}
+    </a>
+  </div>
+  <div class="col-sm-12">
+    <p class="body">{{item?.body}}</p>
+  </div>
+  <div class="col-sm-12">
+    <p class="user"><small>Reviewed by <strong>{{item?.username? item?.username : item?.name}}</strong> on
+      {{item?.date_created | date:'medium'}}</small></p>
+  </div>
+  <div class="col-sm-12">
+    <p class="votes"><small>This review has no votes.</small></p>
+</div>

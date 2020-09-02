@@ -1,0 +1,10 @@
+<section *ngFor='let message of messages$ | async; let i = index;trackBy: trackByFn'>
+  <div class="{{ message.type | messageType }}">
+      {{message.text}}
+    <button mat-button matSuffix mat-icon-button (click)='clear(i)'>
+        <mat-icon>clear</mat-icon>
+    </button>
+  </div>
+</section>
+<!-- 
+<div class="alert alert-{{ message.type}}"></div> -->

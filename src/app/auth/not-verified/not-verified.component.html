@@ -1,0 +1,4 @@
+<app-layout-auth-not-verified *ngIf="!(loaded$ | async) && !(loading$ | async)" (sendEmail)="sendEmailConfirmation(); (false)">
+  <span class="layout-verification">To send another verification email,</span>
+  <span class="layout-send-email">click</span>
+</app-layout-auth-not-verified>

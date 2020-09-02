@@ -1,0 +1,15 @@
+<div class="content" [@loadContent]="'open'">
+  <div class="text-center">
+    <div class="text-center">
+      If you have not created an account yet, then please
+      <a routerLink="/auth/register/"><strong>Sign Up</strong></a> first.
+    </div>
+  </div>
+  <div id="content_inner">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3 login_form">
+        <ng-content></ng-content>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+li.col-lg-1 {
+    padding: 3px;
+}
+ul.custom {
+    padding-right: 20px;
+    padding-left: 20px;
+}
+a {
+    padding-left: 15px;
+
+}
+.products{
+    padding: 0;
+}

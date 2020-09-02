@@ -1,0 +1,40 @@
+<div class="content">
+  <div id="content_inner">
+    <div class="row">
+      <div class="col-sm-12 register_form">
+        <form [formGroup]="form" class="well addReview" (ngSubmit)="onSubmit()">
+          <h2>Leave a product review</h2>
+          <div>
+            <rt-input-block class="title" name="title" [label]="labels['title']" [form]="form" [errors]="formErrors">
+            </rt-input-block>
+          </div>
+          <div class="form-group">
+            <mat-label mat-tab-label>Score</mat-label>
+            <app-star-rating class="score" [formControl]="form.controls['score']" [name]="score"
+              [label]="labels['score']" [form]="form" [errors]="formErrors"></app-star-rating>
+            <mat-error>
+              <span style="font-size: 75%" *ngIf="formErrors">{{ formErrors['score']}}</span>
+            </mat-error>
+
+          </div>
+
+          <div class="form-group">
+            <rt-input-block-textarea class="body" name="body" type="text" [label]="labels['body']" [form]="form"
+              [errors]="formErrors"></rt-input-block-textarea>
+          </div>
+          <div class="form-group" *ngIf="!(authenticated$| async)">
+            <rt-input-block class="name" name="name" type="text" [label]="labels['username']" [form]="form"
+              [errors]="formErrors"></rt-input-block>
+          </div>
+          <div class="form-group " *ngIf="!(authenticated$| async)">
+            <rt-input-block class="email" name="email" [label]="labels['email']" [form]="form" [errors]="formErrors"
+              [globalError]="!!globalError"></rt-input-block>
+          </div>
+          <button mat-flat-button color="primary" type="submit" [disabled]="form.invalid">Save review</button>
+          or
+          <button mat-flat-button color="warn" type="button" routerLink="/catalogue/{{param}}">Cancel</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

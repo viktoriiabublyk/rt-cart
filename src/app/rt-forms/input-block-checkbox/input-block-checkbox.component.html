@@ -1,0 +1,18 @@
+<div
+  [formGroup]="form"
+  class="rt-checkbox"
+  [ngClass]="{'invalid': errors[name]}"
+>
+
+  <label>
+    <input
+      type="checkbox"
+      [value]="value"
+      [formControlName]="name"
+      (blur)="onBlur()"
+      (focus)="onFocus()"
+    >
+    <span>{{errors[name] || label}}</span>
+    <span *ngIf="hasRequiredValidator()" class="rt-input-star">*</span>
+  </label>
+</div>

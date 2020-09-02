@@ -1,0 +1,30 @@
+.wrapper {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2vw;
+  }
+  
+  .item-1 {
+    padding: 1.5em;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+  }
+  
+  .item-2 {
+    padding: 1.5em;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+  }
+  
+  .pull-right {
+    float: right;
+  }
+  
+  .sub-header {
+    text-align: left;
+  }

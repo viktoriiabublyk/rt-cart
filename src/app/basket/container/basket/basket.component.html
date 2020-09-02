@@ -1,0 +1,68 @@
+<app-layout-basket-wrapper>
+   <ng-container class="layout-for-basket-table">
+        <app-layout-basket-table  *ngIf="(basket$ | async) && (basketProduct$ | async)"></app-layout-basket-table>
+   </ng-container>
+
+    <ng-container class="layout-for-basket-form">
+        <form class="basket_summary">
+            <div class="basket-items">
+                <app-layout-basket-form *ngFor="let item of (basket$ | async); trackBy: trackById">
+                    <a class="layout-basket-router-to-catalog-not-found" routerLink="/catalogue/{{item.product.slug}}_{{item.product.id}}">
+                        <img class="thumbnail img-responsive"
+                             src="{{item?.product.image?.thumb || '/assets/img/image_not_found.jpg'}}" alt="">
+                    </a>
+                    <p class="layout-basket-product-availability availability instock" type="text">{{ item.product.availability_data?.message }}</p>
+                    <a class="layout-basket-router-to-catalog" routerLink="/catalogue/{{item.product.slug}}_{{item.product.id}}">{{ item.product.title }}</a>
+
+                    <ng-container class="slot-for-basket-form-checkout-quantity">
+                            <app-layout-basket-form-checkout-quantity>
+                                <button class="layout-basket-btn-quantity-decrement quantity-decrement" type="button"
+                                        (click)="updateQuantity(item, item.quantity - 1)">-</button>
+                                <input class="layout-basket-input-quantity-output quantity-output" type="text" [value]="item.quantity"
+                                                (input)="updateQuantity(item, $event.target.value)" disabled>
+                                <button class="layout-basket-btn-quantity-increment quantity-increment" type="button"
+                                        (click)="updateQuantity(item, item.quantity + 1)">+</button>
+                                <i (click)="removeItem(item?.id)" class="layout-basket-quantity-remove glyphicon glyphicon-trash" style="cursor: pointer"></i>
+                            </app-layout-basket-form-checkout-quantity>
+                    </ng-container>
+                    <p class="layout-basket-product-price price_color align-right" type="text">
+                        {{ item.product.price_data?.excl_tax | currency:item.price_currency }}
+                    </p>
+                    <p class="layout-basket-product-price-calculate price_color align-right" type="text">
+                        {{ calculatePrice(item) | currency}}
+                    </p>
+                </app-layout-basket-form>
+            </div>
+        </form>
+    </ng-container>
+
+    <ng-container class="layout-for-basket-totals-wrapper">
+        <app-layout-basket-totals-wrapper *ngIf="currentBasket$ | async as basket">
+                <ng-container class="slot-for-basket-totals-table">
+                <app-layout-basket-totals-table>
+                    <div class="layout-basket-total-excl-tax">
+                            {{basket.total_excl_tax_excl_discounts}}
+                    </div>
+
+                    <ng-container *ngFor="let discount of basket.offer_discounts;trackBy: trackByFn">
+                        <div class="layout-basket-discount">
+                        <span class="label label-success">Discount</span> {{discount.name}}
+                        </div>
+                        <div class="layout-basket-discount-amount" type="text">
+                        -{{discount.amount}}
+                        </div>
+                    </ng-container>
+
+                    <div class="layout-basket-total-after-discount">
+                        {{basket.total_excl_tax}}
+                    </div>
+
+                    <div class="layout-basket-total-after-discount-final">
+                    {{basket.total_excl_tax}}
+                    </div>
+
+                </app-layout-basket-totals-table>
+                </ng-container>
+        </app-layout-basket-totals-wrapper>
+    </ng-container>
+</app-layout-basket-wrapper>

@@ -1,0 +1,4 @@
+<div [@loadContent]="'open'">
+  <section [innerHTML]="(page$ | async)?.content"></section>
+  <section *ngIf="!(page$ | async)?.content">404 not found</section>
+</div>

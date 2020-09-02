@@ -1,0 +1,31 @@
+.rating{
+  width: 175px;
+  padding-right: 0;
+}
+.reviews{
+  padding-top: 5px;
+  padding-left: 0px;
+  padding-right: 0px;
+  width: 125px;
+}
+.write{
+  padding-top: 2px;
+  padding-left: 0px;
+  padding-right: 0px;
+  width: 100px;
+}
+.img-responsive {
+    margin-left: 15px;
+    /* margin-right: 40px;  */
+    margin-bottom: 0px;
+
+}
+.form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.sort {
+  width: 100%;
+}

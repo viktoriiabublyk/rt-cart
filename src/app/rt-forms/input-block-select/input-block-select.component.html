@@ -1,0 +1,35 @@
+<div
+  *ngIf="editable && !preview && form.controls[name]"
+  [formGroup]="form"
+  data-type="rt-select">
+
+  <mat-form-field class="example-full-width" floatLabel="auto">
+    <mat-label>{{ label}}</mat-label>
+    <mat-select [formControlName]="name" [required] = "required">
+      <mat-option (click)="selectOption(option)" *ngFor="let option of options;trackBy: trackByFn" [value]="optionDict[option]">
+        {{option}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="errors[name]">
+      {{errors[name] }}
+    </mat-error>
+
+    <!-- <mat-hint class="hint" *ngIf="editable && !preview && form.controls[name] && notice">
+      {{ notice }}
+    </mat-hint> -->
+  </mat-form-field>
+</div>
+
+
+<div *ngIf="editable && preview && form.controls[name]">
+  <div class="ds-row">
+    <div class="parameter">{{form.controls[name].value}}</div>
+    <label>{{label}}</label>
+  </div>
+</div>
+<div *ngIf="!editable || !form.controls[name]">
+  <div class="ds-row">
+    <div class="parameter">{{model[name]}}</div>
+    <label>{{label}}</label>
+  </div>
+</div>

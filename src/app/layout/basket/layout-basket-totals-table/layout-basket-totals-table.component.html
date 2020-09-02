@@ -1,0 +1,48 @@
+        <div id="basket_totals">
+            <table class="table table-condensed">
+                <tbody>
+                <tr>
+                    <th colspan="2">
+                        <h3>Basket</h3>
+                    </th>
+                </tr>
+                <tr>
+                    <td>Basket total (before discounts)</td>
+                    <td class="align-right">
+                        <ng-content select=".layout-basket-total-excl-tax"></ng-content>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="basket-discount">
+                        <ng-content select=".layout-basket-discount"></ng-content>
+                    </td>
+                    <ng-content select=".layout-basket-discount-amount"></ng-content>
+                </tr>
+
+                <tr>
+                    <td>Basket total (after discounts)</td>
+                    <td class="align-right">
+                        <ng-content select=".layout-basket-total-after-discount"></ng-content>
+                    </td>
+                </tr>
+                <tr>
+                    <th> &nbsp; </th>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <th class="total">
+                        <h3>Order total</h3>
+                    </th>
+                    <td class="total align-right">
+                        <h3 class="price_color">
+                            <ng-content select=".layout-basket-total-after-discount-final"></ng-content>
+                        </h3>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+

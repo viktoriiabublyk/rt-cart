@@ -1,0 +1,109 @@
+<div [@loading]>
+  <div class="row" *ngIf="(product$ | async) as product">
+    <ul class="breadcrumb">
+      <li>
+        <a routerLink="/">Home</a>
+      </li>
+      <li *ngFor="let item of (product$ | async).category_list;trackBy: trackByFn">
+        <a (click)="choiseBreadscrum(item)">{{item?.name }}</a>
+      </li>
+      <li routerLink="/catalogue/{{param}}"><a (click)="setPage()">{{ product?.title }}</a></li>
+      <li class="active">All reviews</li>
+    </ul>
+    <h2>Customer Reviews</h2>
+    <hr>
+    <div class="content">
+      <div id="promotions">
+      </div>
+      <div id="content_inner">
+        <article>
+
+          <div class="row">
+            <div class="col-sm-2 col-md-2 col-lg-2">
+
+              <div *ngIf="(isImageLoaded$ | async)">
+                <img class="thumbnail img-responsive"
+                  src="{{ product?.images[0]?.large_thumb || '/assets/img/image_not_found.jpg'}}"
+                  alt="{{ product?.title }}">
+              </div>
+              <div *ngIf="(isImageLoadFail$ | async)">
+                <img class="thumbnail img-responsive" src="/assets/img/image_not_found.jpg" alt="{{ product?.title }}">
+              </div>
+            </div>
+
+            <div class="col-xs-10 col-sm-8 col-md-10 col-lg-10 product_main">
+
+              <h1><a routerLink="/catalogue/{{param}}" (click)="setPage()">{{ product?.title }}</a></h1>
+              <p class="price_color">
+                {{ product?.price_data?.excl_tax | currency:product?.price_data?.currency }}
+              </p>
+              <p class="instock availability">
+                <i class="icon-ok"></i>
+                {{ product?.availability_data?.message }}
+              </p>
+              <div class="row">
+                <ng-container *ngIf="!!countReviews">
+                  <div class="col-sm-3 rating">
+                    <app-star-rating [smallStar]="true" [disabledComp]="true" [ngModel]="rating"></app-star-rating>
+                  </div>
+                  <div class="col-sm-2 reviews">
+                    <small>
+                      <a routerLink="/catalogue/{{param}}/all/reviews" (click)="removeCurrentReview()"
+                        *ngIf="first">{{countReviews}} customer review</a>
+                      <a routerLink="/catalogue/{{param}}/all/reviews" (click)="removeCurrentReview()"
+                        *ngIf="!first">{{countReviews}} customer reviews</a>
+                    </small>
+                  </div>
+                  <div class="col-sm-3 write">
+                    <a id="write_review" class="btn btn-success btn-sm" routerLink="/catalogue/{{param}}/review/add">
+                      Write a review
+                    </a>
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <ng-container *ngIf="!reviewId">
+            <div class="col-sm-10">
+              <div class="row">
+                <div class="col-sm-3">
+                  <form class="form">
+                    <mat-form-field class="sort">
+                      <input type="text" #inputSort placeholder="Sort by" aria-label="Sort by" matInput
+                        [formControl]="myControl" [matAutocomplete]="auto">
+                      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                        <mat-option *ngFor="let option of filteredOptions | async;trackBy: trackByFn" [value]="option">
+                          {{option.name}}
+                        </mat-option>
+                      </mat-autocomplete>
+                    </mat-form-field>
+                  </form>
+                </div>
+                <div class="col-sm-2">
+                  <a mat-raised-button routerLink="/catalogue/{{param}}/all/reviews"
+                    [queryParams]="{ sort_by: sortParam }" [disabled]="!sortParam ? true: false">Sort</a>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+          <div class="col-sm-10">
+            <section>
+              <ng-container *ngIf="!!countReviews&&!showReviewForm">
+                <div *ngFor="let item of (reviewsList$ | async);trackBy: trackByFn" [@loading]>
+                  <app-review [param]="param" [item]="item"></app-review>
+                </div>
+                <ng-container *ngIf="!reviewId">
+                  <td-paging-bar #pagingBarLinks pageLinkCount="5" [firstLast]="true" [pageSize]="settings.PAGE_LENGHT"
+                    [total]="countReviews" (change)="changeLinks($event)">
+                    <span hide-xs>{{pagingBarLinks.range}} of {{pagingBarLinks.total}}</span>
+                  </td-paging-bar>
+                </ng-container>
+              </ng-container>
+            </section>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</div>

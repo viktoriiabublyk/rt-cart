@@ -1,0 +1,14 @@
+<app-layout-auth-login-wrapper>
+  <form [formGroup]="form" class="well login" (ngSubmit)="performSubmit()">
+    <app-layout-auth-login-form>
+      <rt-input-block class="layout-email email" name='email' required='false' [label]="formLabels['email']" [form]="form"
+        [errors]="formErrors"></rt-input-block>
+      <rt-input-block class="layout-password password" type="password" name='password' [label]="formLabels['password']" [form]="form"
+        [errors]="formErrors"></rt-input-block>
+      <div class="layout-summit">
+        <input class = "layout-hidden" type="hidden" name="login-redirect_url" id="id_login-redirect_url">
+        <button class = "layout-btn" mat-flat-button color="primary" type="submit" [disabled]="loading$ | async">Log In</button>
+      </div>
+    </app-layout-auth-login-form>
+  </form>
+</app-layout-auth-login-wrapper>

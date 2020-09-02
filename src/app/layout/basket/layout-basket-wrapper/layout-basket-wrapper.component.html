@@ -1,0 +1,15 @@
+<div [@loadContent]="'open'">
+    <h2>Basket</h2>
+    <ng-content select=".layout-for-basket-table"></ng-content>
+    <ng-content select=".layout-for-basket-form"></ng-content>
+    <ng-content select=".layout-for-basket-totals-wrapper"></ng-content>
+
+
+    <div class="form-group clearfix">
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-8">
+                <a routerLink="/checkout/" class="btn btn-lg btn-primary btn-block">Proceed to checkout</a>
+            </div>
+        </div>
+    </div>
+</div>

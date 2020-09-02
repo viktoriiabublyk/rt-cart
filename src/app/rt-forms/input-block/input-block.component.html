@@ -1,0 +1,29 @@
+<div [formGroup]="form" data-type="text">
+  <mat-form-field
+    class="full-width"
+    [ngClass]="{'invalid': form?.controls[name].status === 'INVALID' && form?.controls[name].touched || globalError }"
+  >
+
+    <mat-label>{{ label }}</mat-label>
+
+    <input
+      matInput
+      [tabindex]="tabindex"
+      type="{{ type || 'text' }}"
+      [formControlName]="name"
+      [maxlength]="maxLength"
+      [required] = "required"
+      [readonly]="readonly"
+     
+    >
+
+    <span class="error-icon" *ngIf="errors[name]">
+      <i class="fa fa-times"></i>
+    </span>
+
+    <mat-error>
+      <span *ngIf="errors[name]">{{ errors[name]}}</span>
+    </mat-error>
+
+  </mat-form-field >
+</div>

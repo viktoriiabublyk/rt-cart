@@ -1,0 +1,38 @@
+.basket-preview {
+    margin: 0 auto;
+    max-width: 80vw;
+    -webkit-border-radius: 0 0 6px 6px;
+    -moz-border-radius: 0 0 6px 6px;
+    border-radius: 0 0 6px 6px;
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+.basket-preview__row {
+    background: #EDEDED;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-content: center;
+}
+
+.basket-preview__el {
+    flex-basis: 25%;
+}
+
+.basket-preview__el--w-100 {
+    flex-basis: 100px;
+}
+
+.basket-preview__el--direction-right {
+    justify-content: flex-end;
+}
+
+.basket-preview__image {
+    height: 150px;
+    margin: 0;
+}

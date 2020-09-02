@@ -1,0 +1,10 @@
+<address>
+    <span>{{address.title}} {{address.first_name}} {{address.last_name}}</span><br>
+    <span>{{address.line1}}</span><br>
+    <span *ngIf="address.line2">{{address.line2}}<br></span>
+    <span *ngIf="address.line3">{{address.line3}}<br></span>
+    <span *ngIf="address.line4" >{{address.line4}}<br></span>
+    <span>{{address.state}}</span><br>
+    <span>{{address.postcode}}</span><br>
+    <ng-content></ng-content>
+  </address>

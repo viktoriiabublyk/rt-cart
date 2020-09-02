@@ -1,0 +1,35 @@
+<app-layout-basket-add-wrapper>
+
+  <ng-container class="layout-basket-add-preview">
+  <app-layout-basket-add-preview class="basket-preview" *ngIf="productData$ | async as data; else emptyBasketMessage">
+
+    <ng-container class="layout-basket-add-available-to-buy">
+    <app-layout-basket-add-available-to-buy *ngIf="data.availability_data.is_available_to_buy; else addingToBasketError" [data]="data">
+
+          <span class="layout-basket-add-preview-quantity basket-preview__quantity">{{ data.quantity }}</span>
+
+          <span class="layout-basket-add-preview-price basket-preview__price">
+            {{ data.price_data.excl_tax * data.quantity | currency:data.price_data.currency }}
+          </span>
+
+      <ng-container class="layout-basket-add-b-recommended b-recommended" *ngIf="recommended">
+        <div class="b-recommended__row">
+          <app-layout-basket-add-b-recommended *ngFor="let item of recommended;trackBy: trackByFn" [item]="item" [settings]="settings">
+
+          </app-layout-basket-add-b-recommended>
+        </div>
+      </ng-container>
+
+    </app-layout-basket-add-available-to-buy>
+    </ng-container>
+
+    <ng-template #addingToBasketError>
+      <ng-content select=".layout-basket-add-adding-to-basket"></ng-content>
+    </ng-template>
+  </app-layout-basket-add-preview>
+  </ng-container>
+
+  <ng-template #emptyBasketMessage>
+    <ng-content select=".layout-basket-add-available-to-buy"></ng-content>
+  </ng-template>
+</app-layout-basket-add-wrapper>

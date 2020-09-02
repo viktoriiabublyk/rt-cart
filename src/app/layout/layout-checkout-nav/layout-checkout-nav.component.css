@@ -1,0 +1,11 @@
+.page_inner {
+    padding: 30px;
+  }
+  
+  .navbar-inverse .navbar-nav > li > a {
+    color: #9d9d9d;
+  }
+  
+  .nav-checkout .active .navbar-text {
+    color: #fff;
+  }

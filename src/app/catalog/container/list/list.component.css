@@ -1,0 +1,16 @@
+li.col-lg-1 {
+    padding: 3px;
+  
+
+}
+ul.custom {
+padding-right: 20px;
+padding-left: 20px;
+}
+ul.products {
+padding: 0;
+}
+.breadcrumbs {
+padding-left: 16px;
+padding-right: 16px;
+}

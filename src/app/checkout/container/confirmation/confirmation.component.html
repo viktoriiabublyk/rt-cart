@@ -1,0 +1,20 @@
+<app-layout-checkout-confirmation-wrap>
+  <form [formGroup]="form" (ngSubmit)="continue()">
+    <rt-input-block name='email' [label]="labels['email']" type="email" [form]="form" [errors]="formErrors" [required]="true"></rt-input-block>
+    <rt-input-block-radio-with-content
+      name="users_type"
+      [label]="labels['users_type']"
+      [choices]="typeChoices"
+      [form]="form"
+      [errors]="formErrors"
+    ></rt-input-block-radio-with-content>
+
+    <app-layout-checkout-confirmation-form-password [checked]="checked">
+      <div [formGroup]="form">
+        <rt-input-block name='password' type="password" [label]="labels['password']" [form]="form" [errors]="formErrors"></rt-input-block>
+      </div>
+    </app-layout-checkout-confirmation-form-password>
+
+    <button type="submit" [disabled]="!form.controls['users_type'].value" class="btn btn-lg btn-primary">Continue</button>
+  </form>
+</app-layout-checkout-confirmation-wrap>

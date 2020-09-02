@@ -1,0 +1,36 @@
+.paypal-button.paypal-button-shape-rect {
+    border-radius: 4px;
+}
+
+.paypal-button {
+    height: 35px;
+    min-height: 35px;
+    max-height: 55px;
+    margin-bottom: 10px;
+}
+.paypal-button.paypal-button-color-gold {
+    background: #ffc439;
+    color: #111;
+}
+
+.paypal-button:not(.paypal-button-card) {
+    border: 1px solid transparent;
+    border-radius: 3px;
+    position: relative;
+    text-align: center;
+    width: 20%;
+    box-sizing: border-box;
+    border: none;
+    vertical-align: top;
+    cursor: pointer;
+    outline: none;
+    overflow: hidden;
+    display: inline-block
+}
+
+.paypal-button-logo {
+    height: 17px;
+    max-height: 21px;
+    min-height: 14px;
+    margin-top: 10px;
+}

@@ -1,0 +1,13 @@
+<div class="content" [@loadContent]="'open'">
+    <div class="text-center">
+      Already have an account? Then please <a routerLink="/auth/login/"><strong>Log In</strong></a>.
+    </div>
+  
+    <div id="content_inner">
+      <div class="row">
+        <div class="col-sm-6 col-sm-offset-3 register_form">
+            <ng-content></ng-content>
+        </div>
+    </div>
+  </div>
+</div>

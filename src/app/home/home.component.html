@@ -1,0 +1,44 @@
+<div [@loadContent]="'open'">
+  <div class="row">
+    <p>
+      <a routerLink='/catalogue'>go to catalogue</a>
+    </p>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
+      <mat-toolbar color="accept">
+        <div>
+          <div class="page-header action small">
+            <h1>Categories</h1>
+          </div>
+          <ul class="custom">
+            <li class="col-xs-6 col-sm-4 col-md-3 col-lg-1" *ngFor="let item of (categories$ | async);trackBy: trackByFn">
+              <app-category [category]="item"></app-category>
+            </li>
+          </ul>
+        </div>
+      </mat-toolbar>
+    </div>
+    <div class="col-sm-8 col-md-9 col-lg-9">
+      <section>
+        <div>
+          <ol class="row">
+            <ul class="products" style="list-style: none">
+              <li class="col-xs-11 col-sm-5 col-md-3 col-lg-3" *ngFor="let item of (product$ | async);trackBy: trackByFn">
+                <app-product [item]="item"></app-product>
+              </li>
+            </ul>
+          </ol>
+          <div>
+            <ul class="pager">
+              <li class="next"><button *ngIf='!hasClickedShowMore' class="btn btn-default" (click)="showMore()">show
+                  more</button></li>
+              <li class="next"><button *ngIf='hasClickedShowMore' class="btn btn-default" (click)="showLess()">show
+                  less</button></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

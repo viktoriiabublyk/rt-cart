@@ -1,0 +1,14 @@
+.material-icons.md-36.colorAdd { 
+  /* font-size: 36px; */
+  user-select: none;
+  color: #FB8C00;
+}
+
+.material-icons.md-36.empty { 
+  /* font-size: 36px; */
+  user-select: none;
+}
+
+option{
+  padding: 0;
+}

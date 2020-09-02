@@ -1,0 +1,16 @@
+<div class="well" [@dropItem]="'in'" >
+  <ng-content select="a"></ng-content>
+
+  <address>
+    <span>{{item.title}} {{item.first_name}} {{item.last_name}}</span><br>
+    <span>{{item.line1}}</span><br>
+    <span *ngIf="item.line2">{{item.line2}}<br></span>
+    <span *ngIf="item.line3">{{item.line3}}<br></span>
+    <span *ngIf="item.line4" >{{item.line4}}<br></span>
+    <span>{{item.state}}</span><br>
+    <span>{{item.postcode}}</span><br>
+    <ng-content select="span"></ng-content>
+  </address>
+  
+  <ng-content select="button"></ng-content>
+</div>

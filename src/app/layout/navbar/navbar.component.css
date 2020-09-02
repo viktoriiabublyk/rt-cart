@@ -1,0 +1,12 @@
+.pt-15 {
+    padding-top: 15px;
+}
+.navbar-list__item {
+    display: inline-block;
+    list-style-type: none;
+    margin-right: 10px;
+    color: white;
+}
+.navbar-list__item:hover {
+    text-decoration: none;
+}

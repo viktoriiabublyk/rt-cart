@@ -1,0 +1,29 @@
+<div class="basket-item" [@dropItem]="'in'" [@loadContent]="'open'">
+    <form class="basket_summary">
+        <div class="basket-items">
+    <div class="row">
+        <div class="col-sm-2">
+            <ng-content select=".layout-basket-router-to-catalog-not-found"></ng-content>
+        </div>
+        <div class="col-sm-4">
+            <h3>
+                <ng-content select=".layout-basket-router-to-catalog"></ng-content>
+            </h3>
+            <ng-content select=".layout-basket-product-availability"></ng-content>
+        </div>
+
+        <div class="col-sm-3">
+            <ng-content select=".slot-for-basket-form-checkout-quantity"></ng-content>
+        </div>
+
+        <div class="col-sm-1">
+            <ng-content select=".layout-basket-product-price"></ng-content>
+        </div>
+        <div class="col-sm-2">
+            <ng-content select=".layout-basket-product-price-calculate"></ng-content>
+        </div>
+    </div>
+            </div>
+    </form>
+</div>
+

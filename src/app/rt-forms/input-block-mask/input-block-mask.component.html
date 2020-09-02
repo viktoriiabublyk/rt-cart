@@ -1,0 +1,30 @@
+<div [formGroup]="form" data-type="mask">
+  <mat-form-field
+    class="full-width"
+    floatLabel="auto">
+
+    <mat-label>{{ label }}</mat-label>
+      <input
+        matInput
+        type="text"
+        [formControlName]="name"
+        [dropSpecialCharacters]="false"
+        [showMaskTyped]="showMaskTyped"
+        [mask]="mask"
+        [prefix]="prefix"
+        [required] = "required"
+        [readonly]="readonly"
+        (keyup)="keyUp($event)"
+      >
+    <span class="error-icon" *ngIf="errors[name]">
+      <i class="fa fa-times"></i>
+    </span>
+
+    <mat-error *ngIf="errors[name]" (click)="onFocus()">
+      <span>{{ errors[name]}}</span>
+    </mat-error>
+    <mat-hint *ngIf="hint">
+      {{hint}}
+    </mat-hint>
+  </mat-form-field >
+</div>

@@ -1,0 +1,59 @@
+<div class="navbar navbar-static-top navbar-inverse nav-checkout">
+    <ul class="nav navbar-nav" *ngIf="stepWizard as step" >
+      <li class="step1 {{ step | wizard: 1}}">
+        <a *ngIf="step > 1; else text1" 
+          routerLink="/checkout/shipping-address/"><span class="visible-inline-sm icon-chevron-right"></span><span>
+            1. Shipping address
+        </span></a>
+        <ng-template #text1>
+          <span class="navbar-text">
+            1. Shipping address
+          </span>
+        </ng-template>
+      </li>
+      <li class="step2 {{ step | wizard: 2}} ">
+        <a *ngIf="step > 2; else text2" 
+          routerLink="/checkout/shipping-methods/"><span class="visible-inline-sm icon-chevron-right"></span><span>
+            2. Shipping method
+        </span></a>
+        <ng-template #text2>
+          <span class="navbar-text">
+            2. Shipping method
+          </span>
+        </ng-template>
+      </li>
+      <li class="step3 {{ step | wizard: 3}} ">
+        <a *ngIf="step > 3; else text3" 
+          routerLink="/checkout/payment-details/"><span class="visible-inline-sm icon-chevron-right"></span><span>
+            3. Payment
+        </span></a>
+        <ng-template #text3>
+          <span class="navbar-text">
+            3. Payment
+          </span>
+        </ng-template>
+      </li>
+      <li class="step4 {{ step | wizard: 4}} ">
+        <a *ngIf="step > 4; else text4" 
+          routerLink="/checkout/preview/"><span class="visible-inline-sm icon-chevron-right"></span><span>
+            4. Preview
+        </span></a>
+        <ng-template #text4>
+          <span class="navbar-text">
+            4. Preview
+          </span>
+        </ng-template>
+      </li>
+      <li class="step5 {{ step | wizard: 5}} ">
+        <a *ngIf="step > 5; else text5" 
+          routerLink="/checkout/preview/"><span class="visible-inline-sm icon-chevron-right"></span><span>
+            5. Confirmation
+        </span></a>
+        <ng-template #text5>
+          <span class="navbar-text">
+            5. Confirmation
+          </span>
+        </ng-template>
+      </li>
+    </ul>
+  </div>

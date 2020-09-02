@@ -1,0 +1,15 @@
+<div class="rating">
+    <div style="display: inline-block" *ngFor="let starred of stars; let i = index;trackBy: trackByFn"
+      (click)="rate(i + (starred ? (value > i + 1 ? 1 : 0) : 1))">
+      <ng-container  *ngIf="starred; else noStar">
+        <option [disabled]="disabledComp"
+        [ngStyle]="{'font-size': smallStar ? '30px': '36px'}"
+         class="material-icons md-36 colorAdd">star</option>
+      </ng-container>
+      <ng-template #noStar>
+        <option [disabled]="disabledComp"
+        [ngStyle]="{'font-size': smallStar ? '30px': '36px'}"
+        matInput  class="material-icons md-36 empty">star</option >
+      </ng-template>
+    </div>
+</div> 

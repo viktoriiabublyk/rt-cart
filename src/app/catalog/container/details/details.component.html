@@ -1,0 +1,211 @@
+<!-- <br><br><a href="/">home</a><br> -->
+<!-- <hr /> -->
+<!-- json here: <br/> -->
+<!-- {{ setTitle((product$ | async)?.title) }} -->
+<div class="row start" *ngIf="product$ | async as product; else notObtainableProduct">
+  <div [@loadContent]>
+    <ul class="breadcrumb">
+      <li>
+        <a routerLink="/">Home</a>
+      </li>
+      <li *ngFor="let item of (product$ | async).category_list;trackBy: trackByFn">
+        <a (click)="choiseBreadscrum(item)">{{item?.name }}</a>
+      </li>
+      <li class="active">{{ product?.title }}</li>
+    </ul>
+    <div class="content">
+      <div id="promotions">
+      </div>
+      <div id="content_inner">
+        <article class="product_page">
+
+          <div class="row" [@loading]>
+            <div class="col-sm-6 image_gallery">
+              <div id="product_gallery" class="carousel">
+                <div class="thumbnail">
+                  <div class="carousel-inner">
+                    <div class="item active">
+
+                      <div *ngIf="(isImageLoaded$ | async)" [@loading]>
+                        <!-- <ngx-image-zoom [@loading] [thumbImage]="(selectedThumbImage$ | async)"
+                          [fullImage]="(selectedFullImage$ | async)" [zoomMode]="'hover'">
+                        </ngx-image-zoom> -->
+                        <img src="{{ (selectedThumbImage$ | async) || '/assets/img/image_not_found.jpg'}}"
+                          alt="{{ product?.title }}">
+                      </div>
+                      <div *ngIf="(isImageLoading$ | async)">
+                        <div class="lds-roller">
+                          <div></div>
+                          <div></div>
+                          <div></div>
+                          <div></div>
+                          <div></div>
+                          <div></div>
+                          <div></div>
+                          <div></div>
+                        </div>
+                      </div>
+
+                      <div *ngIf="(isImageLoadFail$ | async)">
+                        <img src="/assets/img/image_not_found.jpg" alt="{{ product?.title }}">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="(isImageLoaded$ | async)&&(imageArray$ | async)?.length>1" class="slider" [@loading]>
+                <ng-image-slider [images]="(imageArray$ | async)" [imagePopup]="false"
+                  (imageClick)="setSelectedImage($event)" [animationSpeed]="0.5" [imageSize]="{width: 60, height: 76}"
+                  [slideImage]="7" #nav>
+                </ng-image-slider>
+              </div>
+            </div>
+            <div class="col-sm-6 product_main">
+
+              <h1>{{ product?.title }}</h1>
+              <p class="price_color">
+                {{ product?.price_data?.excl_tax | currency:product?.price_data?.currency }}
+              </p>
+              <p class="instock availability">
+                <i class="icon-ok"></i>
+                {{ product?.availability_data?.message }}
+              </p>
+              <div class="row">
+                <ng-container *ngIf="!!(countReviews$| async);else noReviews">
+                  <div class="col-sm-5 rating">
+                    <app-star-rating [smallStar]="true" [disabledComp]="true" [ngModel]="rating"></app-star-rating>
+                  </div>
+                  <div class="col-sm-3 reviews">
+                    <small class="textLink">
+                      <a routerLink="/catalogue/{{param}}/all/{{reviewsParam}}" (click)="removeCurrentReview()"
+                        *ngIf="first">{{countReviews}} customer review</a>
+                      <a routerLink="/catalogue/{{param}}/all/{{reviewsParam}}" (click)="removeCurrentReview()"
+                        *ngIf="!first">{{countReviews}} customer reviews</a>
+                    </small>
+                  </div>
+                  <div class="col-sm-3 write">
+                    <a id="write_review" class="btn btn-success btn-sm"
+                      routerLink="/catalogue/{{param}}/review/{{addFormParam}}" (click)="scrollToAddForm()">
+                      Write a review
+                    </a>
+                  </div>
+                </ng-container>
+                <ng-template #noReviews>
+                  <div class="col-sm-3">
+                    <a id="write_review" class="btn btn-success btn-sm"
+                      routerLink="/catalogue/{{param}}/review/{{addFormParam}}" (click)="scrollToAddForm()">
+                      Write a review
+                    </a>
+                  </div>
+                </ng-template>
+
+              </div>
+              <hr>
+              <app-button-add [productId]="product?.id"></app-button-add>
+
+              <button class="btn btn-lg btn-wishlist" disabled="disabled"
+                title="Please login to add products to a wish list.">
+                Add to wish list
+              </button>
+
+            </div>
+          </div>
+
+          <div id="product_description" class="sub-header">
+            <h2>Product Description</h2>
+          </div>
+          <p>{{ product?.description }}</p>
+
+          <div class="sub-header">
+            <h2>Product Information</h2>
+          </div>
+          <table class="table table-striped">
+            <tbody>
+              <tr>
+                <th>UPC</th>
+                <td>{{ product?.upc }}</td>
+              </tr>
+              <tr>
+                <th>Product Type</th>
+                <td>{{ product?.product_class }}</td>
+              </tr>
+              <tr>
+                <th>Price (excl. tax)</th>
+                <td>{{ product?.price_data?.excl_tax | currency:product?.price_data?.currency }}</td>
+              </tr>
+              <tr>
+                <th>Price (incl. tax)</th>
+                <td>{{ product?.price_data?.currency }} {{ product?.price_data?.incl_tax}}</td>
+              </tr>
+              <tr>
+                <th>Tax</th>
+                <td>{{  product?.price_data?.currency }} {{  product?.price_data?.tax}}</td>
+              </tr>
+              <tr>
+                <th>Availability</th>
+                <td>{{ product?.availability_data?.message }}</td>
+              </tr>
+              <tr>
+                <th>Number of reviews</th>
+                <td class="count">{{countReviews$| async}}</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <section [@loading]>
+            <ng-container *ngIf="!!(countReviews$ | async) && !showReviewForm">
+              <div id="reviews" class="sub-header">
+                <h2>Customer Reviews</h2>
+              </div>
+              <div *ngFor="let item of (reviewsList$ | async);trackBy: trackByFn">
+                <app-review [param]="param" [item]="item"></app-review>
+              </div>
+              <td-paging-bar #pagingBarLinks pageLinkCount="5" [firstLast]="true" [pageSize]="settings.PAGE_LENGHT"
+                [total]="countReviews" (change)="changeLinks($event)">
+                <span hide-xs>{{pagingBarLinks.range}} of {{pagingBarLinks.total}}</span>
+              </td-paging-bar>
+            </ng-container>
+            <div class="addReviewForm">
+              <app-add-review *ngIf="showReviewForm" (showCancel)="cancelViewForm($event)"></app-add-review>
+            </div>
+            <ng-container *ngIf="!countReviews&&!showReviewForm">
+              <h2>Customer Reviews</h2>
+              <hr>
+              <p>
+                This product does not have any reviews yet -
+                <a routerLink="/catalogue/{{param}}/review/{{addFormParam}}">be the first to write one</a>.
+              </p>
+            </ng-container>
+          </section>
+        </article>
+        <div class="sub-header" *ngIf="(recentViewed$ | async)?.length">
+          <h2>Products you recently viewed</h2>
+        </div>
+        <ul class="row recent-viewed-list">
+          <li *ngFor="let item of recentViewed$ | async;trackBy: trackByFn"
+            class="col-xs-6 col-sm-4 col-md-3 col-lg-3 recent-viewed-list__item">
+            <article class="product_pod">
+              <div class="image_container">
+                <a (click)="setFirstPageReviews(item)">
+                  <img class="thumbnail" alt="{{ item?.title || 'product image' }}"
+                    src="{{item?.image?.thumb || '/assets/img/image_not_found.jpg'}}">
+                </a>
+              </div>
+              <h3><a (click)="setFirstPageReviews(item)">{{ item?.title }}</a></h3>
+              <app-star-rating [smallStar]="true" [disabledComp]="true" [ngModel]="item?.rating"></app-star-rating>
+              <div class="product_price">
+                <div class="price_color">{{ item?.price_data?.currency }} {{ item?.price_data?.excl_tax }}</div>
+                <app-button-add [productId]="item.id"></app-button-add>
+              </div>
+            </article>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #notObtainableProduct>
+  <h2>Sorry, but this product does not obtainable anymore.</h2>
+  <a routerLink='/catalogue/'>go to catalogue</a>
+</ng-template>

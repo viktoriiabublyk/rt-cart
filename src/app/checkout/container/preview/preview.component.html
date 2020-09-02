@@ -1,0 +1,15 @@
+<app-layout-checkout-preview-wrap [total]=" total$ | async">
+
+  <div class="address" *ngIf="shippingAddress$|async as address" >
+    <app-layout-checkout-preview-shipping-address [address]="address">
+      <span>{{(countryData$|async)?.printable_name}}</span><br>
+    </app-layout-checkout-preview-shipping-address>
+  </div>
+
+  <div class="items">
+    <ng-container *ngFor="let item of basket$ | async;trackBy: basketItemId">
+      <app-layout-checkout-preview-basket-item [item]="item" [calcPrice]="calculatePrice(item)" ></app-layout-checkout-preview-basket-item>
+    </ng-container>
+  </div>
+
+</app-layout-checkout-preview-wrap>

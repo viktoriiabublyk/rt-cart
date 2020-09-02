@@ -1,0 +1,28 @@
+<h2>Added to basket</h2>
+<div class="basket-preview__row">
+    <div class="basket-preview__el basket-preview__el--w-100">
+        <img class="layout-basket-add-preview-image basket-preview__image thumbnail"
+            src="{{ data?.image?.thumb || '/assets/img/image_not_found.jpg'}}" alt="">
+    </div>
+    <div class="basket-preview__el">
+        <a class="layout-basket-add-preview-link" routerLink="/catalogue/{{data.slug}}_{{data.id}}">
+            <h3 class="basket-preview__title">{{ data.title }}</h3>
+        </a>
+        Quantity: <b><ng-content select=".layout-basket-add-preview-quantity"></ng-content></b>
+    </div>
+    <div class="basket-preview__el">
+        <h3>Price</h3>
+        <ng-content select=".layout-basket-add-preview-price"></ng-content>
+    </div>
+    <div class="basket-preview__el basket-preview__el--direction-right  basket-preview__el--w-100">
+        <a class="btn btn-default" routerLink="/basket">
+            To basket
+        </a>
+        <br /><br />
+        <a class="btn btn-default" routerLink="/checkout">
+            Checkout
+        </a>
+    </div>
+</div>
+ <ng-content select=".layout-basket-add-b-recommended"></ng-content>
+

@@ -1,0 +1,7 @@
+<app-layout-auth-confirm-email>
+  <ng-container *ngIf="confirmEmailOnGet || (loading$ | async)">...</ng-container>
+  <app-layout-auth-confirm-email-send *ngIf="!confirmEmailOnGet && !(loading$ | async)">
+    <button class = "layout-verification" (click)="confirmEmail()">Confirm</button>
+  </app-layout-auth-confirm-email-send>
+</app-layout-auth-confirm-email>
+

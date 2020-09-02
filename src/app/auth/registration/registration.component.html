@@ -1,0 +1,17 @@
+<app-layout-auth-registration-wrapper>
+  <form [formGroup]="form" class="well register" (ngSubmit)="performSubmit()">
+    <app-layout-auth-registration-form>
+        <rt-input-block  class = "layout-register-name" name='username' [label]="labels['username']" [form]="form"
+          [errors]="formErrors"></rt-input-block>
+        <rt-input-block  class = "layout-register-email" name='email'  [label]="labels['email']" [form]="form"
+          [errors]="formErrors"></rt-input-block>
+        <rt-input-block  class = "layout-register-password" type="password" name='password1' [label]="labels['password1']"
+          [form]="form" [errors]="formErrors"></rt-input-block>
+        <rt-input-block class = "layout-register-confirm-password" type="password" name='password2' [label]="labels['password2']"
+          [form]="form" [errors]="formErrors"></rt-input-block>
+        <div class="layout-register-button">
+          <button class = "register-btn" mat-flat-button color="primary" type="submit" [disabled]="loading$ | async">Register</button>
+        </div>
+    </app-layout-auth-registration-form>
+  </form>
+</app-layout-auth-registration-wrapper>

@@ -1,0 +1,28 @@
+<div [formGroup]="form" data-type="radio-old">
+  <mat-label class="customInputBlockRadioLabel">
+    <mat-error *ngIf="errors[name] && dirty; else standardLabel">{{errors[name] }}</mat-error>
+    <ng-template #standardLabel>
+      <span>{{label}}</span>
+    </ng-template>
+  </mat-label>
+  <mat-radio-group
+    class="example-radio-group"
+    [formControlName]="name"
+    >
+    <ng-container *ngFor="let option of options;trackBy: trackByFn">
+      <mat-radio-button
+        color="primary"
+        class="example-radio-button"
+        (click)="selectOption(option)"
+        [value]="optionDict[option]"
+        [disabled]="disabled || readonly"
+      >
+        {{option}}
+      </mat-radio-button>
+      <div *ngIf="option == selectedValue">
+        <ng-content></ng-content>
+      </div>
+    </ng-container>
+
+  </mat-radio-group>
+</div>

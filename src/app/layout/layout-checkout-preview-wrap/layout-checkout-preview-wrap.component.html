@@ -1,0 +1,128 @@
+<div [@loadContent]="'open'">
+    <div class="sub-header">
+      <h1>Preview order</h1>
+    </div>
+    <div class="wrapper">
+      <div>
+        <div class="sub-header">
+          <h2>Shipping</h2>
+        </div>
+        <div class="item-1">
+          <a class="pull-right" routerLink="/checkout/shipping-address">change</a>
+          <h3>Address</h3>
+            <ng-content select=".address"></ng-content>
+        </div>
+      </div>
+      <div>
+        <div class="sub-header">
+          <h2>Payment</h2>
+        </div>
+        <div class="item-2">
+          <a class="pull-right" routerLink="/checkout/payment-details">change</a>
+          <h3>Payment</h3>
+          <span>Payment details to go here</span>
+        </div>
+      </div>
+      <div>
+        <div class="item-1">
+          <a class="pull-right" routerLink="/checkout/shipping-methods">change</a>
+          <h3>Shipping method</h3>
+          <span>Text here</span>
+        </div>
+      </div>
+    </div>
+    <a class="pull-right" routerLink="/basket/">Edit order contents</a>
+    <div class="sub-header">
+      <h2>Order contents</h2>
+    </div>
+    <div id="content_inner">
+      <div class="basket-title hidden-xs">
+        <div class="row">
+          <h2 class="col-sm-6 h3">Items</h2>
+          <p class="col-sm-3 h3">Quantity</p>
+          <p class="col-sm-1 h3">Total</p>
+        </div>
+      </div>
+      <form class="basket_summary">
+        <div class="basket-items">
+            <ng-content select=".items"></ng-content>
+        </div>
+      </form>
+      <div class="row">
+        <div class="col-sm-6"></div>
+        <div class="col-sm-6">
+          <div class="sub-header">
+            <h2>Totals</h2>
+          </div>
+          <div id="basket_totals">
+            <table class="table table-condensed">
+              <tbody>
+                <tr>
+                  <th colspan="2">
+                    <h3>Basket</h3>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="total">Basket total</th>
+                  <th class="total align-right">
+                    {{ total }}
+                    <!-- TODO use pipe from teradata -->
+                  </th>
+                </tr>
+                <tr>
+                  <th colspan="2">
+                    <h3>Shipping</h3>
+                  </th>
+                  </tr>
+                  <tr>
+                    <th class="total">Free shipping</th>
+                    <th class="total align-right">
+                      {{ total }}
+                      <!-- TODO use pipe from teradata -->
+                    </th>
+                  </tr>
+                <tr>
+                  <th>&nbsp;</th>
+                  <td></td>
+                </tr>
+                <tr>
+                    <th><h3>Post order actions</h3><small>These will be applied once your order is placed.</small></th>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="total" colspan="2">
+                      <span class="label label-success">Deferred benefit offer</span><br>
+                      <p>You will have your name changed to Barry!</p>
+                    </td>
+                </tr>
+                <tr>
+                  <th>&nbsp;</th>
+                  <td></td>
+                </tr>
+                <tr>
+                  <th class="total">
+                    <h3>Order total</h3>
+                  </th>
+                  <td class="total align-right">
+                    <h3 class="price_color">
+                      {{ total }}
+                    </h3>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="form-group clearfix">
+        <div class="row">
+          <div class="col-sm-4 col-sm-offset-8">
+            <a class="btn btn-lg btn-primary btn-block">Place order</a>
+            <!-- <a routerLink="/checkout/thank-you/" class="btn btn-lg btn-primary btn-block">Place order</a> -->
+  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,22 @@
+<div class="basket-item" [@dropItem]="'in'" >
+    <div class="row">
+      <div class="col-sm-2">
+        <a routerLink="/catalogue/{{item.slug}}_{{item.id}}">
+            <img class="thumbnail img-responsive" src="{{item?.image?.thumb || '/assets/img/image_not_found.jpg'}}" alt="">
+        </a>
+      </div>
+      <div class="col-sm-4">
+        <h3><a routerLink="/catalogue/{{item.slug}}_{{item.id}}">{{ item.title }}</a></h3>
+        <p class="availability instock">{{ item.availability_data?.message }}</p>
+      </div>
+      <div class="col-sm-3">
+        {{item.quantity}}
+      </div>
+      <div class="col-sm-2">
+
+        <p class="price_color align-right">
+          {{ calcPrice | currency:item.price_data?.currency }}
+        </p>
+      </div>
+    </div>
+  </div>

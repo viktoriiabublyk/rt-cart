@@ -1,0 +1,26 @@
+<div class="page-header action">
+  <h1>Profile</h1>
+</div>
+<div id="messages">
+</div>
+<div id="promotions">
+</div>
+<table class="table table-striped table-bordered">
+  <tbody>
+    <tr>
+      <th>User</th>
+      <td>{{(user$ | async)?.first_name}} {{(user$ | async)?.last_name}}</td>
+    </tr>
+    <tr>
+      <th>Email address</th>
+      <td>{{(user$ | async)?.email}}</td>
+    </tr>
+    <tr>
+      <th>Date registered</th>
+      <td>{{(user$ | async)?.date_joined}}</td>
+    </tr>
+  </tbody>
+</table>
+<a mat-flat-button routerLink="./change-password/" >Change password</a>
+<a mat-flat-button routerLink="./edit/" >Edit profile</a>
+<a mat-flat-button id="delete_profile" routerLink="./delete/" >Delete profile</a>

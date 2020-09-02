@@ -1,0 +1,23 @@
+<div [@loadContent]="'open'">
+    <div class="sub-header">
+      <h1>Shipping address</h1>
+    </div>
+    <div class="shipping-payment">
+      <div class="sub-header">
+        <h2>Where should we ship to?</h2>
+      </div>
+      <h3>An address from your address book?</h3>
+      <div class="wrapper">
+
+        <ng-content select=".address-list"></ng-content>
+
+      </div>
+      <h3>Or a new address?</h3>
+  
+      <div class="well">
+
+        <ng-content select="form"></ng-content>
+
+      </div>
+    </div>
+  <div>

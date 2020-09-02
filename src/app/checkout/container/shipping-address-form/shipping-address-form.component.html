@@ -1,0 +1,37 @@
+<app-layout-checkout-shipping-address-form-wrap>
+
+  <ng-container class="address-list" *ngFor="let item of addressList$ | async;trackBy: formAdressId">
+    <app-layout-checkout-shipping-address-form-address [item]="item">
+      <a class="pull-right" (click)=deleteAddress(item.id) >delete</a>
+      <span>{{(countryData$|async)?.printable_name}}</span><br>
+      <button type="submit" class="btn btn-primary btn-large ship-address" (click)="selectAddress(item.id)">Ship to this address</button>
+    </app-layout-checkout-shipping-address-form-address>
+  </ng-container>
+  
+
+  <form [formGroup]="form" (ngSubmit)="continue()">
+    <div class="title">
+      <rt-input-block-select name='title'  [label]="labels['title']" [choices]="choices" [form]="form" [errors]="formErrors"></rt-input-block-select>
+    </div>
+    <rt-input-block name='first_name' [label]="labels['first_name']" [form]="form" [errors]="formErrors" [required]="true"></rt-input-block>
+    <rt-input-block name='last_name' [label]="labels['last_name']" [form]="form" [errors]="formErrors" [required]="true"></rt-input-block>
+    <rt-input-block name='line1' [label]="labels['line1']" [form]="form" [errors]="formErrors" [required]="true"></rt-input-block>
+    <rt-input-block name='line2' [label]="labels['line2']" [form]="form" [errors]="formErrors"></rt-input-block>
+    <rt-input-block name='line3' [label]="labels['line3']" [form]="form" [errors]="formErrors"></rt-input-block>
+    <rt-input-block name='line4' [label]="labels['line4']" [form]="form" [errors]="formErrors" [required]="true"></rt-input-block>
+    <rt-input-block-mask name='postcode' mask="00000" [label]="labels['postcode']" [form]="form" [errors]="formErrors" [required]="true"></rt-input-block-mask>
+    <rt-input-block name='country' [label]="labels['country']" [form]="form" [errors]="formErrors" [required]="true"></rt-input-block>
+    <rt-input-block-mask name='phone_number' [showMaskTyped]='true' mask="(000) 000-0000" hint="In case we need to call you about your order"
+      [label]="labels['phone_number']" [form]="form" [errors]="formErrors"></rt-input-block-mask>
+    <br>
+    <rt-input-block-textarea name='notes' [label]="labels['notes']" [form]="form" [errors]="formErrors" hint="
+      Tell us anything we should know when delivering your order"></rt-input-block-textarea>
+    <br>
+
+    <app-layout-checkout-shipping-address-form-btn>
+      <button type="submit" class="btn btn-lg btn-primary">Continue</button>
+    </app-layout-checkout-shipping-address-form-btn>
+
+  </form>
+
+</app-layout-checkout-shipping-address-form-wrap>

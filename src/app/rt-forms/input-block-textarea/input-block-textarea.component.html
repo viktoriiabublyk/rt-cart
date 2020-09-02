@@ -1,0 +1,22 @@
+<mat-form-field class="example-full-width"
+  [formGroup]="form"
+  [floatLabel]="'auto'"
+  [ngClass]="{'invalid': errors[name]}"
+  data-type="textarea"
+>
+<mat-label>{{ label }}</mat-label>
+  <!-- <mat-label *ngIf="label">{{ label }}</mat-label> -->
+  <textarea
+    matInput
+    matNativeControl
+    [value]="form.controls[name].value"
+    [formControlName]="name"
+  ></textarea>
+
+  <mat-error>
+    {{ errors[name] }}
+  </mat-error>
+  <mat-hint *ngIf="hint">
+    {{hint}}
+  </mat-hint>
+</mat-form-field>

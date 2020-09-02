@@ -1,0 +1,12 @@
+.sub-header {
+    padding-bottom: 9px;
+    border-bottom: 1px solid #eeeeee;
+  }
+  
+  .wrapper {
+    display: grid;
+    grid-template-columns: 48% 48%;
+    grid-template-rows: auto;
+    grid-column-gap: 4%;
+    /* padding: 30px; */
+  }
